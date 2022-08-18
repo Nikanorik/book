@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Hangman!</title>
+</head>
+
+<body>
+	<h1>Hangman!</h1>
+	<script>
+		var words = ["Rossosh", "Volgograd", "Peter", "Kazan"];
+		var word = words[Math.floor(Math.random() * words.length)];
+		var twoword = word.toLowerCase();
+		var answerArray = [];
+		words.push("Saransk");
+		for (var i = 0; i < twoword.length; i++) {
+			answerArray[i] = "_"
+		}
+		var line = twoword.length;
+		var shans = twoword.length * 2;
+		while (line > 0 && shans > 0) {
+			alert(answerArray.join(" "));
+			var letter = prompt("Enter letter");
+			shans--;
+			if (letter === null) {
+				break;
+			} else if (letter.length !== 1) {
+				alert("Need enter one letter!")
+			} else {
+				letter = letter.toLowerCase();
+				for (var j = 0; j < twoword.length; j++) {
+					if (twoword[j] === letter && answerArray[j] === "_") {
+						answerArray[j] = letter;
+						line--;
+					}
+				}
+			}
+		}
+		alert(answerArray.join(" "));
+		alert("Well, you win it is " + word);
+
+	</script>
+</body>
+
+</html>
